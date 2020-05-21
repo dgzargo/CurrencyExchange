@@ -1,0 +1,18 @@
+<div class="horizontal">
+  <mat-form-field>
+    <mat-label>{{Label}}</mat-label>
+    <input matInput type="text"
+           [(ngModel)]="Amount" (ngModelChange)="updateAmount($event)"
+           pattern="^\d*\.?\d*$"
+           (keypress)="declineNonDigitChars($event)"
+           [disabled]="InputDisabled">
+  </mat-form-field>
+  <div style="width: 4px"></div>
+  <mat-form-field style="width: 80px;">
+    <mat-select [(value)]="CurrencyShortName" (valueChange)="CurrencyShortNameChange.emit($event)">
+      <mat-option *ngFor="let currency of Currencies" [value]="currency">
+        <img [src]="currency.FlagImg">{{currency.CurrencyShortName}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>

@@ -1,0 +1,16 @@
+<div style="max-width: 700px; margin: 0 auto;">
+  <h4>exchange</h4>
+  <br>
+  <div class="horizontal space-between">
+    <app-curency-input Label="Amount"
+                       [Currencies]="Currencies"
+                       [(Amount)]="Amount1" (AmountChange)="clearAmount2()"
+                       [(CurrencyShortName)]="Currency1"></app-curency-input>
+    <button mat-button (click)="swapCurrencies()"><mat-icon>sync_alt</mat-icon></button>
+    <app-curency-input Label="Converted to"
+                       [Currencies]="Currencies"
+                       [(Amount)]="Amount2"
+                       [(CurrencyShortName)]="Currency2" [InputDisabled]="true"></app-curency-input>
+  </div>
+  <button mat-raised-button color="primary" class="float-right" (click)="exchange()" [disabled]="!Amount1">Exchange</button>
+</div>

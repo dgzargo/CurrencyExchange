@@ -1,0 +1,46 @@
+<h4>History</h4>
+<br>
+<div class="spinner-container" *ngIf="HistoryRowsDataSource.loading$ | async">
+  <mat-spinner></mat-spinner>
+</div>
+<table mat-table [dataSource]="HistoryRowsDataSource" class="mat-elevation-z8" style="width: 100%">
+
+  <ng-container matColumnDef="FromCurrency">
+      <th mat-header-cell *matHeaderCellDef>
+        <mat-form-field>
+          <mat-label>FromCurrency</mat-label>
+          <input matInput placeholder="search criteria" [(ngModel)]="FromCurrencyFilter" (ngModelChange)="loadRows()">
+        </mat-form-field>
+      </th>
+    <td mat-cell *matCellDef="let element">{{element.fromCurrency}}</td>
+  </ng-container>
+  <ng-container matColumnDef="FromAmount">
+    <th mat-header-cell *matHeaderCellDef>FromAmount</th>
+    <td mat-cell *matCellDef="let element">{{element.fromAmount}}</td>
+  </ng-container>
+  <ng-container matColumnDef="ToCurrency">
+    <th mat-header-cell *matHeaderCellDef>
+      <mat-form-field>
+        <mat-label>ToCurrency</mat-label>
+        <input matInput placeholder="search criteria" [(ngModel)]="ToCurrencyFilter" (ngModelChange)="loadRows()">
+      </mat-form-field>
+    </th>
+    <td mat-cell *matCellDef="let element">{{element.toCurrency}}</td>
+  </ng-container>
+  <ng-container matColumnDef="ToAmount">
+    <th mat-header-cell *matHeaderCellDef>ToAmount</th>
+    <td mat-cell *matCellDef="let element">{{element.toAmount}}</td>
+  </ng-container>
+  <ng-container matColumnDef="Date">
+    <th mat-header-cell *matHeaderCellDef>Date</th>
+    <td mat-cell *matCellDef="let element">{{element.date|date:'short'}}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="TableTitles"></tr>
+  <tr mat-row *matRowDef="let row; columns: TableTitles;"></tr>
+</table>
+<mat-paginator [length]="RecordsCount"
+               [pageSize]="5"
+               [pageSizeOptions]="[5, 7, 12, 21, 33, 54]"
+               [showFirstLastButtons]="true">
+</mat-paginator>
